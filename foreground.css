@@ -1,0 +1,27 @@
+.autocirculars {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border-radius: 2px;
+  max-height: 50vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: none;
+}
+
+.autocirculars li {
+  cursor: pointer;
+  width: 100%;
+}
+
+.autocirculars li:hover {
+  background-color: #ddd;
+}
+
+input:focus ~ .autocirculars {
+  display: block;
+}

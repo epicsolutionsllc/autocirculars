@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/fonts/font.css" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Popup</title>
+  </head>
+  <body>
+    <nav>
+      <h2 class="logo">☸</h2>
+      <h1>AutoCirculars <span class="unbold">0.8.1</span></h1>
+      <button id="fakeInput" class="button">Upload a CSV file</button>
+    </nav>
+    <main class="no-file">
+      <div id="goodAlert" class="alert">
+        <h2 class="alert-content">&#128504;</h2>
+      </div>
+      <p class="upload-instructions">Upload a file to get started.</p>
+      <input type="file" id="fileInput" class="hidden" accept=".csv" />
+      <details class="details" id="mappingDetails" open>
+        <summary>Item mapping</summary>
+        <form class="mappings">
+          <label for="m-prefix">Prefix</label>
+          <select name="m-prefix" id="mPrefix"></select>
+          <br />
+          <label for="m-ing">Ingredient</label>
+          <select name="m-ing" id="mIng"></select>
+          <br />
+          <label for="m-deal">Deal</label>
+          <select name="m-deal" id="mDeal"></select>
+          <br />
+          <label for="m-unit">Size</label>
+          <select name="m-unit" id="mUnit"></select>
+          <br />
+          <label for="m-cat">Category</label>
+          <select name="m-cat" id="mCat"></select>
+          <br />
+          <label for="m-details">Details</label>
+          <select name="m-details" id="mDetails"></select>
+          <br />
+        </form>
+      </details>
+      <details class="details" id="tableDetails">
+        <summary>Table preview</summary>
+        <div class="table-parent">
+          <table>
+            <tbody id="preview"></tbody>
+          </table>
+        </div>
+        <p id="truncated">only showing first 10 rows of file.</p>
+      </details>
+      <details class="details" id="itemDetails">
+        <summary>Item preview</summary>
+        <label for="preview-row">Row to preview</label>
+        <input type="text" name="preview-row" id="previewRow" value="7" />
+        <div class="item" id="itemPreview"></div>
+      </details>
+      <div id="buttons">
+        <button class="button" id="saveMappings">Save</button>
+        <button class="button button-warning" id="removeCsv">Delete</button>
+      </div>
+    </main>
+    <script src="popup.js" type="module"></script>
+  </body>
+</html>
