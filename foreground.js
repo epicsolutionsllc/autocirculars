@@ -1,4 +1,5 @@
 window.addEventListener("load", () => {
+  // ensure that all text goes to Sentence Case
   const fixCaps = (str) => {
     if (str) {
       let upper = true;
@@ -43,6 +44,7 @@ window.addEventListener("load", () => {
   let dialog = null;
   let parsedCsv, map;
   let autocomplete = document.createElement("div");
+  // load autocomplete options from Chrome storage
   let autoOptions = chrome.storage.local.get(
     ["parsedCsv", "currentMappings"],
     (res) => {
@@ -95,6 +97,7 @@ window.addEventListener("load", () => {
     });
   };
 
+  // build the autocomplete div and options
   const createAutocomplete = (el) => {
     if (!el.getAttribute("data-hasautocomplete")) {
       el.setAttribute("data-hasautocomplete", "true");
@@ -116,6 +119,7 @@ window.addEventListener("load", () => {
     }
   };
 
+  // handles updating the autocomplete options
   const updateAutocomplete = (query) => {
     autocomplete.innerHTML = "";
     parsedCsv.forEach((row) => {
@@ -131,6 +135,7 @@ window.addEventListener("load", () => {
     });
   };
 
+  // find the last div on the page (aka the modal)
   const checkForLast = () => {
     if (lastDiv && lastDiv.id != "root") {
       dialog = lastDiv;
@@ -145,11 +150,14 @@ window.addEventListener("load", () => {
       dialog = null;
     }
   };
+
+  // check again every time an element is clicked
   document.documentElement.addEventListener("click", () => {
     lastDiv = document.querySelector("div.ant-popover:last-of-type");
     checkForLast();
   });
 
+  // dynamically update autocomplete options without reloading
   chrome.runtime.onMessage.addListener((req) => {
     chrome.storage.local.get(["parsedCsv", "currentMappings"], (res) => {
       parsedCsv = res.parsedCsv;
